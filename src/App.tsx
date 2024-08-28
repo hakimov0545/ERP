@@ -1,35 +1,85 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react";
+import {
+	BrowserRouter,
+	Navigate,
+	Outlet,
+	Route,
+	Routes,
+} from "react-router-dom";
+import { Login } from "@pages/login/login";
+import Layout from "@components/Layout";
+import { Dashboard } from "@pages/admin/Dashboard";
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+	return (
+		<BrowserRouter>
+			<Routes>
+				<Route
+					path="/"
+					element={<Navigate to="/login" replace />}
+				/>
+				<Route path="/login" element={<Login />} />
+				<Route
+					path="/admin"
+					element={
+						<Layout>
+							<Outlet />
+						</Layout>
+					}
+				>
+					<Route path="dashboard" element={<Dashboard />} />
+					<Route
+						path="staff"
+						element={<div>Staff Page</div>}
+					/>
+					<Route
+						path="paymentVoucher"
+						element={<div>Payment Voucher Page</div>}
+					/>
+					<Route
+						path="payroll"
+						element={<div>Payroll Page</div>}
+					/>
+					<Route
+						path="memo"
+						element={<div>Memo Page</div>}
+					/>
+					<Route
+						path="circulars"
+						element={<div>Circulars Page</div>}
+					/>
+					<Route
+						path="maintenance"
+						element={<div>Maintenance Page</div>}
+					/>
+					<Route
+						path="logistics"
+						element={<div>Logistics Page</div>}
+					/>
+					<Route
+						path="officeBudget"
+						element={<div>Office Budget Page</div>}
+					/>
+					<Route
+						path="stocksAndInventory"
+						element={<div>Stocks and Inventory Page</div>}
+					/>
+					<Route
+						path="notifications"
+						element={<div>Notifications Page</div>}
+					/>
+					<Route
+						path="capacityBuilding"
+						element={<div>Capacity Building Page</div>}
+					/>
+					<Route
+						path="procurements"
+						element={<div>Procurements Page</div>}
+					/>
+				</Route>
+			</Routes>
+		</BrowserRouter>
+	);
 }
 
-export default App
+export default App;
