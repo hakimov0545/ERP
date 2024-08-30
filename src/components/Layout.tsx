@@ -1,6 +1,6 @@
-import React from "react";
-import { Layout as AntdLayout, Menu, theme } from "antd";
-import { useLocation, useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Layout as AntdLayout, Menu } from "antd";
+import { useNavigate } from "react-router-dom";
 import { RxDashboard } from "react-icons/rx";
 import { BsPeopleFill } from "react-icons/bs";
 import { FaFileInvoiceDollar } from "react-icons/fa6";
@@ -14,6 +14,11 @@ import { IoIosNotifications } from "react-icons/io";
 import { IoMdPerson } from "react-icons/io";
 import { BsBasket2Fill } from "react-icons/bs";
 import logo from "@images/logo.png";
+import { setStaff } from "@store/slices/staff";
+import { useDispatch } from "react-redux";
+import { fetchEmployees, fetchPayroll, fetchStaff } from "@api";
+import { setEmployees } from "@store/slices/employees";
+import { setPayroll } from "@store/slices/payroll";
 
 const { Content, Sider } = AntdLayout;
 
@@ -99,8 +104,8 @@ const items = [
 ];
 
 const Layout = ({ children }: { children?: React.ReactNode }) => {
-	const location = useLocation();
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
 
 	const handleMenuClick = (item: { key: string }) => {
 		const clickedItem = items.find(
@@ -110,6 +115,24 @@ const Layout = ({ children }: { children?: React.ReactNode }) => {
 			navigate(clickedItem.path);
 		}
 	};
+
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const staffRes = await fetchStaff();
+				const employeesRes = await fetchEmployees();
+				const payrollRes = await fetchPayroll();
+
+				dispatch(setStaff(staffRes));
+				dispatch(setEmployees(employeesRes));
+				dispatch(setPayroll(payrollRes));
+			} catch (error) {
+				console.error("Failed to fetch staff data", error);
+			}
+		};
+
+		fetchData();
+	}, [dispatch]);
 
 	return (
 		<AntdLayout>

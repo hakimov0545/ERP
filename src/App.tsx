@@ -1,4 +1,3 @@
-import React from "react";
 import {
 	BrowserRouter,
 	Navigate,
@@ -9,6 +8,7 @@ import {
 import { Login } from "@pages/login/login";
 import Layout from "@components/Layout";
 import { Dashboard } from "@pages/admin/Dashboard";
+import { Staff } from "@pages/admin/Staff";
 
 function App() {
 	return (
@@ -28,10 +28,7 @@ function App() {
 					}
 				>
 					<Route path="dashboard" element={<Dashboard />} />
-					<Route
-						path="staff"
-						element={<div>Staff Page</div>}
-					/>
+					<Route path="staff" element={<Staff />} />
 					<Route
 						path="paymentVoucher"
 						element={<div>Payment Voucher Page</div>}

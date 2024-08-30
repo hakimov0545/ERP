@@ -1,5 +1,4 @@
 import { Button, Col, Form, Input, message, Row } from "antd";
-import React from "react";
 import logo from "@images/logo.png";
 import loginImage from "@images/loginImage.png";
 import { useNavigate } from "react-router-dom";
