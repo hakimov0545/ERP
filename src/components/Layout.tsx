@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Layout as AntdLayout, Menu } from "antd";
-import { useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { RxDashboard } from "react-icons/rx";
 import { BsPeopleFill } from "react-icons/bs";
 import { FaFileInvoiceDollar } from "react-icons/fa6";
@@ -21,8 +21,14 @@ import { setEmployees } from "@store/slices/employees";
 import { setPayroll } from "@store/slices/payroll";
 
 const { Content, Sider } = AntdLayout;
+interface MenuItemType {
+	key: string;
+	icon: React.ReactNode;
+	path: string;
+	label: string;
+}
 
-const items = [
+const items: MenuItemType[] = [
 	{
 		key: "dashboard",
 		icon: <RxDashboard />,
@@ -102,10 +108,10 @@ const items = [
 		label: "Procurements",
 	},
 ];
-
 const Layout = ({ children }: { children?: React.ReactNode }) => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
+	const location = useLocation();
 
 	const handleMenuClick = (item: { key: string }) => {
 		const clickedItem = items.find(
@@ -136,36 +142,51 @@ const Layout = ({ children }: { children?: React.ReactNode }) => {
 
 	return (
 		<AntdLayout>
-			<Sider
-				theme="light"
-				breakpoint="lg"
-				collapsedWidth="0"
-				onBreakpoint={(broken) => {
-					console.log(broken);
-				}}
-				onCollapse={(collapsed, type) => {
-					console.log(collapsed, type);
-				}}
-			>
-				<div className="demo-logo-vertical pt-9 pb-7 text-center">
+			<Sider theme="light" collapsible={false} width={200}>
+				<div className="text-center demo-logo-vertical pt-9 pb-7">
 					<img src={logo} alt="" className="mx-auto" />
-					<p className="text-blue-700 text-base">
+					<p className="text-base text-blue-700">
 						UiUxOtor
 					</p>
 					<p>ERP System</p>
 				</div>
 				<Menu
 					theme="light"
-					mode="inline"
-					defaultSelectedKeys={["dashboard"]}
-					items={items}
 					onClick={handleMenuClick}
-				/>
+					defaultSelectedKeys={["dashboard"]}
+					mode="inline"
+				>
+					{items.map((item) => (
+						<Menu.Item
+							style={{
+								margin: 0,
+								borderRadius: 0,
+								width: "100%",
+								borderLeft:
+									location.pathname === item.path
+										? "6px solid #5584CE"
+										: "6px solid transparent",
+								backgroundColor:
+									location.pathname === item.path
+										? "#e6f4ff"
+										: "transparent",
+								color:
+									location.pathname === item.path
+										? "#1677ff"
+										: "#000000",
+							}}
+							key={item.key}
+							icon={item.icon}
+						>
+							<Link to={item.path}>{item.label}</Link>
+						</Menu.Item>
+					))}
+				</Menu>
 			</Sider>
 			<AntdLayout>
 				<Content
 					style={{
-						padding: "30px 20px",
+						padding: "20px",
 						minHeight: "100vh",
 						backgroundColor: "#F8F9FD",
 					}}

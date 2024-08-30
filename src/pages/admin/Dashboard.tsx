@@ -1,19 +1,23 @@
-import { RootState } from "@store";
-import { useSelector } from "react-redux";
+/** @jsxImportSource @emotion/react */
+import { Flex, Space, Typography } from "antd";
+import styled from "@emotion/styled";
+
+const { Title, Text } = Typography;
+
+const CustomTitle = styled(Title)`
+	margin: 0;
+`;
 
 export const Dashboard = () => {
-	const { employees } = useSelector(
-		(state: RootState) => state.employees
-	);
-
-	console.log({ employees });
-
 	return (
-		<div>
-			<p className="text-2xl font-bold">Dashboard</p>
-			{employees.map((m) => {
-				return <div>{m.name}</div>;
-			})}
-		</div>
+		<>
+			<Flex justify="space-between" align="flex-start">
+				<Space direction="vertical">
+					<CustomTitle level={5}>Welcome</CustomTitle>
+					<Text type="secondary">Tofay sdasda</Text>
+				</Space>
+				<Text>Tofay sdasda</Text>
+			</Flex>
+		</>
 	);
 };
