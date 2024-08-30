@@ -8,6 +8,7 @@ export const Staff: React.FC = () => {
 		(state: RootState) => state.staff.staff
 	);
 
+	// Define the table columns based on the data you provided
 	const columns = [
 		{
 			title: "S/N",
@@ -76,7 +77,7 @@ export const Staff: React.FC = () => {
 	}));
 
 	return (
-		<div className="py-5 px-5">
+		<div>
 			<div
 				style={{
 					borderRadius: "20px",
@@ -84,10 +85,10 @@ export const Staff: React.FC = () => {
 					width: "100%",
 					height: "130px",
 				}}
-				className="px-5 py-6 flex items-center gap-20 mb-5"
+				className="flex items-center justify-between px-5 py-6 mb-5"
 			>
 				<div style={{ width: "350px" }}>
-					<p className="text-lg mb-3">
+					<p className="mb-3 text-lg">
 						Quick search a staff
 					</p>
 					<Input
@@ -103,7 +104,7 @@ export const Staff: React.FC = () => {
 					<p className="text-lg">Total number of staff</p>
 				</div>
 				<div style={{ width: "200px" }}>
-					<p className="text-lg mb-3">Filter staff</p>
+					<p className="mb-3 text-lg">Filter staff</p>
 					<Select
 						defaultValue={"all"}
 						style={{
@@ -143,7 +144,11 @@ export const Staff: React.FC = () => {
 					<p className="text-2xl font-bold">All staff</p>
 					<p className="text-lg">Showing 10 per page</p>
 				</div>
-				<Table columns={columns} dataSource={data} />
+				<Table
+					columns={columns}
+					rowHoverable={false}
+					dataSource={data}
+				/>
 			</div>
 		</div>
 	);
