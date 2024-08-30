@@ -8,7 +8,6 @@ export const Staff: React.FC = () => {
 		(state: RootState) => state.staff.staff
 	);
 
-	// Define the table columns based on the data you provided
 	const columns = [
 		{
 			title: "S/N",
@@ -56,7 +55,10 @@ export const Staff: React.FC = () => {
 			key: "action",
 			render: (_: any) => (
 				<Space size="middle">
-					<a className="text-blue-400">View more</a>
+					<a className="text-blue-400">Edit</a>
+					<a className="text-red-500 hover:text-red-700">
+						Delete
+					</a>
 				</Space>
 			),
 		},
