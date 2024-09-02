@@ -2,11 +2,14 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@store";
 import { Button, Input, Select, Space, Table } from "antd";
+import { useNavigate } from "react-router-dom";
 
 export const Staff: React.FC = () => {
 	const staff = useSelector(
 		(state: RootState) => state.staff.staff
 	);
+
+	const navigate = useNavigate();
 
 	// Define the table columns based on the data you provided
 	const columns = [
@@ -54,9 +57,18 @@ export const Staff: React.FC = () => {
 		{
 			title: "Action",
 			key: "action",
-			render: (_: any) => (
+			render: (_: any, record: any) => (
 				<Space size="middle">
-					<a className="text-blue-400">Edit</a>
+					<a
+						className="text-blue-400"
+						onClick={() =>
+							navigate("/admin/staff/edit", {
+								state: { id: record.key },
+							})
+						}
+					>
+						Edit
+					</a>
 					<a className="text-red-500 hover:text-red-700">
 						Delete
 					</a>
