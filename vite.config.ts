@@ -16,6 +16,7 @@ export default defineConfig({
 				__dirname,
 				"./src/components"
 			),
+			"@forms": path.resolve(__dirname, "./src/forms"),
 			"@data": path.resolve(__dirname, "./src/data"),
 			"@hooks": path.resolve(__dirname, "./src/hooks"),
 			"@hocs": path.resolve(__dirname, "./src/hocs"),
