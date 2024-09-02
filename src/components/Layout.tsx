@@ -44,7 +44,7 @@ const items: MenuItemType[] = [
   {
     key: "paymentVoucher",
     icon: <BsPeopleFill />,
-    path: "/admin/paymentVoucher",
+    path: "/admin/payment-voucher",
     label: "Payment Voucher",
   },
   {
@@ -80,13 +80,13 @@ const items: MenuItemType[] = [
   {
     key: "officeBudget",
     icon: <FaSackDollar />,
-    path: "/admin/officeBudget",
+    path: "/admin/office-budget",
     label: "Office Budget",
   },
   {
     key: "stocksAndInventory",
     icon: <RiStockLine />,
-    path: "/admin/stocksAndInventory",
+    path: "/admin/stocks-and-inventory",
     label: "Stocks and Inventory",
   },
   {
@@ -98,7 +98,7 @@ const items: MenuItemType[] = [
   {
     key: "capacityBuilding",
     icon: <IoMdPerson />,
-    path: "/admin/capacityBuilding",
+    path: "/admin/capacity-building",
     label: "Capacity Building",
   },
   {
