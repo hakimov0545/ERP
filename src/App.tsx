@@ -38,6 +38,50 @@ const routes = createBrowserRouter([
 				path: "staff/edit",
 				element: <StaffForm />,
 			},
+			{
+				path: "paymentVoucher",
+				element: <div>payment Voucher</div>,
+			},
+			{
+				path: "payroll",
+				element: <div>payroll</div>,
+			},
+			{
+				path: "memo",
+				element: <div>memo</div>,
+			},
+			{
+				path: "circulars",
+				element: <div>circulars</div>,
+			},
+			{
+				path: "maintenance",
+				element: <div>maintenance</div>,
+			},
+			{
+				path: "logistics",
+				element: <div>logistics</div>,
+			},
+			{
+				path: "officeBudget",
+				element: <div>Office Budget</div>,
+			},
+			{
+				path: "stocksAndInventory",
+				element: <div>Stocks And Inventory</div>,
+			},
+			{
+				path: "notifications",
+				element: <div>notifications</div>,
+			},
+			{
+				path: "capacityBuilding",
+				element: <div>Capacity Building</div>,
+			},
+			{
+				path: "procurements",
+				element: <div>procurements</div>,
+			},
 		],
 	},
 	{
