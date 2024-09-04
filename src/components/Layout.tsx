@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Layout as AntdLayout, Menu } from "antd";
+import { Layout as AntdLayout, Flex, Menu, Typography } from "antd";
 import { Link, useLocation } from "react-router-dom";
 import { RxDashboard } from "react-icons/rx";
 import { BsPeopleFill } from "react-icons/bs";
@@ -19,7 +19,17 @@ import { useDispatch } from "react-redux";
 import { fetchEmployees, fetchPayroll, fetchStaff } from "@api";
 import { setEmployees } from "@store/slices/employees";
 import { setPayroll } from "@store/slices/payroll";
+import styled from "@emotion/styled";
+import { GrMoney } from "react-icons/gr";
+import { FaHome } from "react-icons/fa";
+import { BsPersonFill } from "react-icons/bs";
+import { GoCalendar } from "react-icons/go";
 
+const { Text, Title: AntdTitle } = Typography;
+
+const Title = styled(AntdTitle)`
+  margin: 0px !important;
+`;
 const { Content, Sider } = AntdLayout;
 interface MenuItemType {
   key: string;
@@ -40,12 +50,6 @@ const items: MenuItemType[] = [
     icon: <BsPeopleFill />,
     path: "/admin/staff",
     label: "Staff",
-  },
-  {
-    key: "paymentVoucher",
-    icon: <BsPeopleFill />,
-    path: "/admin/payment-voucher",
-    label: "Payment Voucher",
   },
   {
     key: "payroll",
@@ -111,7 +115,45 @@ const items: MenuItemType[] = [
 const Layout = ({ children }: { children?: React.ReactNode }) => {
   const dispatch = useDispatch();
   const location = useLocation();
-
+  function pageDetails(): {
+    title: string;
+    text: string;
+    icon: React.ReactNode;
+  } {
+    const path = location.pathname.replace("/admin/", "");
+    switch (path) {
+      case "dashboard":
+        return {
+          title: "",
+          text: "dfssdfsdfsdfsdfds",
+          icon: <FaHome />,
+        };
+      case "staff":
+        return {
+          title: "All Staff",
+          text: "View, search for and add new staff",
+          icon: <BsPersonFill />,
+        };
+      case "payroll":
+        return {
+          title: "Payroll",
+          text: "Generate and send payroll to account.",
+          icon: <GrMoney />,
+        };
+      case "memo":
+        return {
+          title: "Memo",
+          text: "Create and send memos to designated offices.",
+          icon: <GoCalendar />,
+        };
+      default:
+        return {
+          title: "Default Title",
+          text: "Default matn.",
+          icon: <FaHome />,
+        };
+    }
+  }
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -129,7 +171,11 @@ const Layout = ({ children }: { children?: React.ReactNode }) => {
 
     fetchData();
   }, [dispatch]);
-
+  const {
+    title: pageTitle,
+    text: pageText,
+    icon: pageIcon,
+  }: { title: string; text: string; icon: React.ReactNode } = pageDetails();
   return (
     <AntdLayout>
       <Sider theme="light" collapsible={false} width={260}>
@@ -169,6 +215,25 @@ const Layout = ({ children }: { children?: React.ReactNode }) => {
             backgroundColor: "#F8F9FD",
           }}
         >
+          <Flex
+            justify="space-between"
+            align="center"
+            style={{
+              marginBottom: "16px",
+            }}
+          >
+            <div>
+              <Title
+                level={3}
+                style={{ display: "flex", alignItems: "center", gap: "5px" }}
+              >
+                <div className="text-blue-500">{pageIcon}</div>
+                {pageTitle}
+              </Title>
+              <Text>{pageText}</Text>
+            </div>
+            <Text type="secondary">Time: 14:30</Text>
+          </Flex>
           {children}
         </Content>
       </AntdLayout>

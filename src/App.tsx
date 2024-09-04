@@ -9,7 +9,6 @@ import Layout from "@components/Layout";
 import { Dashboard } from "@pages/admin/Dashboard";
 import { Staff } from "@pages/admin/Staff";
 import PageError from "@pages/PageError";
-import PaymentVaucher from "@pages/admin/PaymentVaucher";
 import Payroll from "@pages/admin/Payroll";
 import Memo from "@pages/admin/Memo";
 import Circulars from "@pages/admin/Circulars";
@@ -20,8 +19,8 @@ import StocksAndInventory from "@pages/admin/StocksAndInventory";
 import CapacityBuilding from "@pages/admin/CapacityBuilding";
 import Notifications from "@pages/admin/Notifications";
 import Procurements from "@pages/admin/Procurements";
-import OfficeBudgetForm from "@components/forms/OfficeBudgetForm";
-import OfficeBudgetMainPage from "@pages/admin/office budget/ChildrenMain";
+import OfficeBudgetForm from "@forms/OfficeBudgetForm";
+import MainOfficeBudget from "@pages/admin/office budget/MainOfficeBudget";
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -43,7 +42,6 @@ const routes = createBrowserRouter([
     children: [
       { index: true, path: "dashboard", element: <Dashboard /> },
       { path: "staff", element: <Staff /> },
-      { path: "payment-voucher", element: <PaymentVaucher /> },
       { path: "payroll", element: <Payroll /> },
       { path: "memo", element: <Memo /> },
       { path: "circulars", element: <Circulars /> },
@@ -51,9 +49,9 @@ const routes = createBrowserRouter([
       { path: "logistics", element: <Logistics /> },
       {
         path: "office-budget",
-        element: <OfficeBudget />,
+        element: <MainOfficeBudget />,
         children: [
-          { path: "", element: <OfficeBudgetMainPage></OfficeBudgetMainPage> },
+          { path: "", element: <OfficeBudget /> },
           { path: "create-budget", element: <OfficeBudgetForm /> },
         ],
       },
