@@ -9,12 +9,13 @@ import {
 	UploadProps,
 } from "antd";
 import { useLocation, useNavigate } from "react-router-dom";
-import { IoChevronBack } from "react-icons/io5";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@store";
 import { LoadingOutlined } from "@ant-design/icons";
 import { IoCamera } from "react-icons/io5";
+import styled from "@emotion/styled";
+import { FaAngleLeft } from "react-icons/fa6";
 
 type FileType = Parameters<GetProp<UploadProps, "beforeUpload">>[0];
 
@@ -41,6 +42,20 @@ const beforeUpload = (file: FileType) => {
 	}
 	return isJpgOrPng && isLt2M;
 };
+
+const CustomLink = styled.a`
+	width: 95px;
+	padding-left: 10px;
+	color: #0000ff;
+	font-size: 20px;
+	display: flex;
+	align-items: center;
+	text-decoration: none;
+	gap: 6px;
+	margin-bottom: 16px;
+	border: 1px solid #0000ff;
+	border-radius: 12px;
+`;
 
 export const StaffForm = () => {
 	const navigate = useNavigate();
@@ -101,10 +116,12 @@ export const StaffForm = () => {
 
 	return (
 		<div>
-			<Button type="primary" onClick={() => navigate(-1)}>
-				<IoChevronBack />
+			<CustomLink onClick={() => navigate(-1)}>
+				<span>
+					<FaAngleLeft />
+				</span>
 				Back
-			</Button>
+			</CustomLink>
 			<div
 				style={{
 					borderRadius: "20px",
@@ -321,7 +338,10 @@ export const StaffForm = () => {
 							marginTop: "15px",
 						}}
 					>
-						Save staff
+						{location.pathname.includes("add")
+							? "Add"
+							: "Edit"}{" "}
+						staff
 					</Button>
 				</Form>
 			</div>

@@ -140,6 +140,9 @@ export const Staff: React.FC = () => {
 						borderRadius: "15px",
 						padding: "12px 40px",
 					}}
+					onClick={() => {
+						navigate("/admin/staff/add");
+					}}
 				>
 					Add a new staff
 				</Button>
