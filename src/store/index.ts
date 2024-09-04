@@ -9,6 +9,7 @@ const store = configureStore({
 		employees: employeesReducer,
 		payroll: payrollReducer,
 	},
+	devTools: process.env.NODE_ENV !== "production",
 });
 
 export type RootState = ReturnType<typeof store.getState>;

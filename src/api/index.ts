@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const api = axios.create({
-	baseURL: "https://642b-213-230-88-105.ngrok-free.app",
+	baseURL: "https://e7e6-84-54-92-117.ngrok-free.app",
 });
 
 export const fetchStaff = async () => {

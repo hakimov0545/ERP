@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Layout as AntdLayout, Menu } from "antd";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { RxDashboard } from "react-icons/rx";
 import { BsPeopleFill } from "react-icons/bs";
 import { FaFileInvoiceDollar } from "react-icons/fa6";
@@ -109,16 +109,8 @@ const items: MenuItemType[] = [
   },
 ];
 const Layout = ({ children }: { children?: React.ReactNode }) => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
-
-  const handleMenuClick = (item: { key: string }) => {
-    const clickedItem = items.find((menuItem) => menuItem.key === item.key);
-    if (clickedItem) {
-      navigate(clickedItem.path);
-    }
-  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -131,7 +123,7 @@ const Layout = ({ children }: { children?: React.ReactNode }) => {
         dispatch(setEmployees(employeesRes));
         dispatch(setPayroll(payrollRes));
       } catch (error) {
-        console.error("Failed to fetch staff data", error);
+        console.error("Failed to fetch data", error);
       }
     };
 
@@ -142,18 +134,15 @@ const Layout = ({ children }: { children?: React.ReactNode }) => {
     <AntdLayout>
       <Sider theme="light" collapsible={false} width={260}>
         <div className="text-center demo-logo-vertical pt-9 pb-7">
-          <img src={logo} alt="" className="mx-auto" />
+          <img src={logo} alt="Logo" className="mx-auto" />
           <p className="text-base text-blue-700">UiUxOtor</p>
           <p>ERP System</p>
         </div>
-        <Menu
-          theme="light"
-          onClick={handleMenuClick}
-          defaultSelectedKeys={["dashboard"]}
-          mode="inline"
-        >
+        <Menu theme="light" selectedKeys={[location.pathname]} mode="inline">
           {items.map((item) => (
             <Menu.Item
+              key={item.path}
+              icon={item.icon}
               style={{
                 margin: 0,
                 borderRadius: 0,
@@ -166,8 +155,6 @@ const Layout = ({ children }: { children?: React.ReactNode }) => {
                   location.pathname === item.path ? "#e6f4ff" : "transparent",
                 color: location.pathname === item.path ? "#1677ff" : "#000000",
               }}
-              key={item.key}
-              icon={item.icon}
             >
               <Link to={item.path}>{item.label}</Link>
             </Menu.Item>
