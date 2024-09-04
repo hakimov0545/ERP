@@ -45,9 +45,9 @@ export const Staff: React.FC = () => {
 			title: "Role",
 			dataIndex: "role",
 			key: "role",
-			render: (text: string) =>
-				text.charAt(0).toUpperCase() +
-				text.slice(1).toLowerCase(),
+			// render: (text: string) =>
+			// 	text.charAt(0).toUpperCase() +
+			// 	text.slice(1).toLowerCase(),
 		},
 		{
 			title: "Designation",
@@ -83,9 +83,9 @@ export const Staff: React.FC = () => {
 		firstName: item.firstName,
 		lastName: item.lastName,
 		gender: item.gender,
-		phoneNumber: `+${item.phoneNumber}`,
-		designation: item.designation,
-		role: item.role,
+		phoneNumber: item.phone,
+		designation: item.designationId,
+		role: item.roleId,
 	}));
 
 	return (

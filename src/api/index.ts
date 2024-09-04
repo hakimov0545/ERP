@@ -1,11 +1,11 @@
 import axios from "axios";
 
 export const api = axios.create({
-	baseURL: "https://e7e6-84-54-92-117.ngrok-free.app",
+	baseURL: "https://3f8572bedc77c278.mokky.dev",
 });
 
 export const fetchStaff = async () => {
-	const res = await api.post("/users/find-many", {});
+	const res = await api.get("/staff");
 	return res.data;
 };
 

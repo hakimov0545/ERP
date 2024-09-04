@@ -230,7 +230,7 @@ export const StaffForm = () => {
 							</Select>
 						</Form.Item>
 						<Form.Item
-							name="role"
+							name="roleId"
 							label="Role"
 							rules={[
 								{
@@ -246,11 +246,14 @@ export const StaffForm = () => {
 									});
 								}}
 							>
-								<Select.Option value="admin">
-									Admin
+								<Select.Option value="1">
+									First
 								</Select.Option>
-								<Select.Option value="">
-									Other options
+								<Select.Option value="2">
+									Second
+								</Select.Option>
+								<Select.Option value="3">
+									Third
 								</Select.Option>
 							</Select>
 						</Form.Item>
@@ -277,7 +280,7 @@ export const StaffForm = () => {
 						</Form.Item>
 
 						<Form.Item
-							name="phoneNumber"
+							name="phone"
 							label="Phone Number"
 							rules={[
 								{
@@ -291,7 +294,7 @@ export const StaffForm = () => {
 						</Form.Item>
 
 						<Form.Item
-							name="designation"
+							name="designationId"
 							label="Designation"
 							rules={[
 								{
@@ -308,11 +311,14 @@ export const StaffForm = () => {
 									});
 								}}
 							>
-								<Select.Option value="first">
+								<Select.Option value="1">
 									First
 								</Select.Option>
-								<Select.Option value="">
-									Other options
+								<Select.Option value="2">
+									Second
+								</Select.Option>
+								<Select.Option value="3">
+									Third
 								</Select.Option>
 							</Select>
 						</Form.Item>
