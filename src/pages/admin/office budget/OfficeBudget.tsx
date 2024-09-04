@@ -1,18 +1,9 @@
 import classNames from "classnames";
-import {
-  Avatar,
-  Button,
-  Card,
-  Col,
-  Flex,
-  Row,
-  Table,
-  TableProps,
-  Typography,
-} from "antd";
+import { Avatar, Button, Card, Col, Flex, Row, Table, Typography } from "antd";
 import styled from "@emotion/styled";
 import { FaSackDollar } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
+import { TableCols } from "@data/OfficeData";
 const { Text, Title: AntdTitle } = Typography;
 
 const Title = styled(AntdTitle)`
@@ -29,45 +20,6 @@ const cardData: ICardData[] = [
   { price: "230000", desc: "Amount used, YTD", iconColor: "orange" },
   { price: "230000", desc: "Total budget balance", iconColor: "purple" },
   { price: "48%", desc: "Budget % used", iconColor: "green" },
-];
-
-const columns: TableProps["columns"] = [
-  {
-    title: "S/N",
-    dataIndex: "index",
-    key: "index",
-    render: (text) => <a>{text}</a>,
-  },
-  {
-    title: "No.",
-    dataIndex: "No",
-    key: "No",
-  },
-  {
-    title: "Description",
-    dataIndex: "description",
-    key: "description",
-  },
-  {
-    title: " Amount ($)",
-    dataIndex: "amount",
-    key: "amount",
-  },
-  {
-    title: "Actual Amount ($)",
-    dataIndex: "actualAmount",
-    key: "actualAmount",
-  },
-  {
-    title: "Variance ($)",
-    dataIndex: "varianceAmount",
-    key: "varianceAmount",
-  },
-  {
-    title: "Date",
-    dataIndex: "date",
-    key: "date",
-  },
 ];
 
 function OfficeBudget() {
@@ -135,7 +87,7 @@ function OfficeBudget() {
         }}
       >
         <AntdTitle level={3}>Budget History</AntdTitle>
-        <Table columns={columns} />
+        <Table columns={TableCols} />
       </div>
     </>
   );
