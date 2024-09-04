@@ -1,4 +1,9 @@
-import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  Navigate,
+  Outlet,
+  RouterProvider,
+} from "react-router-dom";
 import { Login } from "@pages/login/login";
 import Layout from "@components/Layout";
 import { Dashboard } from "@pages/admin/Dashboard";
@@ -10,16 +15,22 @@ import Memo from "@pages/admin/Memo";
 import Circulars from "@pages/admin/Circulars";
 import Maintenance from "@pages/admin/Maintenance";
 import Logistics from "@pages/admin/Logistics";
-import OfficeBudget from "@pages/admin/OfficeBudget";
+import OfficeBudget from "@pages/admin/office budget/OfficeBudget";
 import StocksAndInventory from "@pages/admin/StocksAndInventory";
 import CapacityBuilding from "@pages/admin/CapacityBuilding";
 import Notifications from "@pages/admin/Notifications";
 import Procurements from "@pages/admin/Procurements";
+import OfficeBudgetForm from "@components/forms/OfficeBudgetForm";
+import OfficeBudgetMainPage from "@pages/admin/office budget/ChildrenMain";
 const routes = createBrowserRouter([
+  {
+    path: "/",
+    errorElement: <PageError />,
+    element: <Navigate to={"/login"} />,
+  },
   {
     path: "/login",
     index: true,
-    errorElement: <PageError />,
     element: <Login></Login>,
   },
   {
@@ -38,7 +49,14 @@ const routes = createBrowserRouter([
       { path: "circulars", element: <Circulars /> },
       { path: "maintenance", element: <Maintenance /> },
       { path: "logistics", element: <Logistics /> },
-      { path: "office-budget", element: <OfficeBudget /> },
+      {
+        path: "office-budget",
+        element: <OfficeBudget />,
+        children: [
+          { path: "", element: <OfficeBudgetMainPage></OfficeBudgetMainPage> },
+          { path: "create-budget", element: <OfficeBudgetForm /> },
+        ],
+      },
       { path: "stocks-and-inventory", element: <StocksAndInventory /> },
       { path: "notifications", element: <Notifications /> },
       { path: "capacity-building", element: <CapacityBuilding /> },

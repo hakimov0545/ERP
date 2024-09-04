@@ -2,21 +2,21 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 // Define and export StaffState
 export interface StaffState {
-	staff: any[];
+  staff: any[];
 }
 
 const initialState: StaffState = {
-	staff: [],
+  staff: [],
 };
 
 const staffSlice = createSlice({
-	name: "staff",
-	initialState,
-	reducers: {
-		setStaff: (state, action: PayloadAction<any[]>) => {
-			state.staff = action.payload;
-		},
-	},
+  name: "staff",
+  initialState,
+  reducers: {
+    setStaff: (state, action: PayloadAction<any[]>) => {
+      state.staff = action.payload;
+    },
+  },
 });
 
 export const { setStaff } = staffSlice.actions;
