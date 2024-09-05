@@ -154,10 +154,9 @@ export const Staff: React.FC = () => {
                 }}
                 className="px-5 py-6"
             >
-                <div className="flex items-center justify-between mb-10">
+                
                     <p className="text-2xl font-bold">All staff</p>
-                    <p className="text-lg">Showing 10 per page</p>
-                </div>
+                
                 <Table
                     columns={columns}
                     rowHoverable={false}

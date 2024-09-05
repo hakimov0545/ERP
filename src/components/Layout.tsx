@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Layout as AntdLayout, Flex, Menu, Typography } from "antd";
+import { Layout as AntdLayout, Avatar, Flex, Menu, Typography } from "antd";
 import { Link, useLocation } from "react-router-dom";
 import { RxDashboard } from "react-icons/rx";
 import { BsPeopleFill } from "react-icons/bs";
@@ -23,6 +23,7 @@ import { FaHome } from "react-icons/fa";
 import { BsPersonFill } from "react-icons/bs";
 import { GoCalendar } from "react-icons/go";
 import { IoSettingsOutline } from "react-icons/io5";
+import { FaBell } from "react-icons/fa";
 
 const { Text, Title: AntdTitle } = Typography;
 
@@ -150,7 +151,13 @@ const Layout = ({ children }: { children?: React.ReactNode }) => {
             title: "Maintenance",
             text: "View and create schedule for maintenance",
             icon: <IoSettingsOutline />,
-          }; 
+          };
+          case "maintenance/schedule-maintenance":
+            return {
+              title: "Schedule Maintenance",
+              text: "Schedule a maintenance for future use.",
+              icon: <IoSettingsOutline />,
+            };  
       case "office-budget":
           return {
             title: "Office Budget",
@@ -210,12 +217,12 @@ const Layout = ({ children }: { children?: React.ReactNode }) => {
                 borderRadius: 0,
                 width: "100%",
                 borderLeft:
-                  location.pathname === item.path
+                location.pathname.includes(item.path)
                     ? "6px solid #5584CE"
                     : "6px solid transparent",
                 backgroundColor:
-                  location.pathname === item.path ? "#e6f4ff" : "transparent",
-                color: location.pathname === item.path ? "#1677ff" : "#000000",
+                  location.pathname.includes(item.path) ? "#e6f4ff" : "transparent",
+                color: location.pathname.includes(item.path)? "#1677ff" : "#000000",
               }}
             >
               <Link to={item.path}>{item.label}</Link>
@@ -252,7 +259,14 @@ const Layout = ({ children }: { children?: React.ReactNode }) => {
               </Title>
               <Text>{pageText}</Text>
             </div>
-            <Text type="secondary">Time: 14:30</Text>
+            <div className="flex items-center gap-2">
+            <FaBell/>
+            <Avatar size={"large"}></Avatar>
+            <div>
+              <Typography.Text  className="block font-semibold">Otor Jhon</Typography.Text>
+              <Typography.Text>Hr Office</Typography.Text>
+            </div>
+            </div> 
           </Flex>
           {children}
         </Content>

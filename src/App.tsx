@@ -12,7 +12,7 @@ import PageError from "@pages/PageError";
 import Payroll from "@pages/admin/Payroll";
 import Memo from "@pages/admin/Memo";
 import Circulars from "@pages/admin/Circulars";
-import Maintenance from "@pages/admin/Maintenance";
+import Maintenance from "@pages/admin/maintenace/Maintenance";
 import Logistics from "@pages/admin/Logistics";
 import OfficeBudget from "@pages/admin/office budget/OfficeBudget";
 import StocksAndInventory from "@pages/admin/StocksAndInventory";
@@ -24,6 +24,8 @@ import MainOfficeBudget from "@pages/admin/office budget/MainOfficeBudget";
 import { StaffForm } from "@forms/StaffForm";
 import Swipe from "@pages/slider";
 import { ConfigProvider } from "antd";
+import MainMaintenance from "@pages/admin/maintenace/MainMaintenance";
+import MaintenanceForm from "@forms/MaintenanceForm";
 const routes = createBrowserRouter([
 	{
 		path: "/",
@@ -55,7 +57,7 @@ const routes = createBrowserRouter([
 			{ path: "payroll", element: <Payroll /> },
 			{ path: "memo", element: <Memo /> },
 			{ path: "circulars", element: <Circulars /> },
-			{ path: "maintenance", element: <Maintenance /> },
+			{ path: "maintenance", element: <MainMaintenance />,children:[{path:"",element:<Maintenance/>},{path:"schedule-maintenance",element:<MaintenanceForm/>}] },
 			{ path: "logistics", element: <Logistics /> },
 			{
 				path: "office-budget",
