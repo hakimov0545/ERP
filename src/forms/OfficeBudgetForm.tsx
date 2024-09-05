@@ -12,7 +12,7 @@ import {
 } from "antd";
 import styled from "@emotion/styled";
 import { FaAngleLeft } from "react-icons/fa6";
-
+import { TableCols } from "@data/OfficeData";
 const CustomLink = styled.a`
   color: #0000ff;
   font-size: 22px;
@@ -98,7 +98,13 @@ function OfficeBudgetForm() {
         }}
       >
         <Title level={3}>Budget Request</Title>
-        <Table locale={{ emptyText: null }}></Table>
+        <Table
+          columns={TableCols?.filter(
+            (item) =>
+              item.key !== "varianceAmount" && item.key !== "actualAmount"
+          )}
+          locale={{ emptyText: null }}
+        ></Table>
       </div>
     </>
   );
