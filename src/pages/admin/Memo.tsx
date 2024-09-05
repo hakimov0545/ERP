@@ -1,5 +1,8 @@
-function Memo() {
-  return <div>Memo</div>;
-}
-
+const Memo = () => {
+  return (
+    <div>
+      Memo
+    </div>
+  );
+};
 export default Memo;
