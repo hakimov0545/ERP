@@ -22,6 +22,7 @@ import { GrMoney } from "react-icons/gr";
 import { FaHome } from "react-icons/fa";
 import { BsPersonFill } from "react-icons/bs";
 import { GoCalendar } from "react-icons/go";
+import { IoSettingsOutline } from "react-icons/io5";
 
 const { Text, Title: AntdTitle } = Typography;
 
@@ -144,6 +145,24 @@ const Layout = ({ children }: { children?: React.ReactNode }) => {
           text: "Create and send memos to designated offices.",
           icon: <GoCalendar />,
         };
+      case "maintenance":
+          return {
+            title: "Maintenance",
+            text: "View and create schedule for maintenance",
+            icon: <IoSettingsOutline />,
+          }; 
+      case "office-budget":
+          return {
+            title: "Office Budget",
+            text: "View, create and send budget request.",
+            icon: <FaSackDollar />,
+          };
+      case "office-budget/create-budget":
+            return {
+              title: "Create Budget",
+              text: "create and send budget request.",
+              icon: <FaSackDollar />,
+          };
       default:
         return {
           title: "Default Title",

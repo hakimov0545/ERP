@@ -1,20 +1,11 @@
-import classNames from "classnames";
-import { Avatar, Button, Card, Col, Flex, Row, Table, Typography } from "antd";
-import styled from "@emotion/styled";
+import { Table, Typography } from "antd";
 import { FaSackDollar } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import { TableCols } from "@data/OfficeData";
-const { Text, Title: AntdTitle } = Typography;
+import { ICardData } from "@Interface/Interface";
+import ActionBar from "@components/ActionBar";
+import Card from "@components/Card";
 
-const Title = styled(AntdTitle)`
-  margin: 0px !important;
-`;
-
-interface ICardData {
-  price: string | number;
-  desc: string;
-  iconColor: string;
-}
 const cardData: ICardData[] = [
   { price: "230000", desc: "asdasd", iconColor: "blue" },
   { price: "230000", desc: "Amount used, YTD", iconColor: "orange" },
@@ -26,58 +17,12 @@ function OfficeBudget() {
   const navigate = useNavigate();
   return (
     <>
-      <Row gutter={16} style={{ marginBottom: "16px" }}>
+      <div className="grid grid-cols-4 gap-4 mb-4" >
         {cardData.map((item, index) => (
-          <Col span={6} key={index}>
-            <Card bordered={false}>
-              <Flex justify="space-between">
-                <div>
-                  <Title level={3}>{item.price.toLocaleString("en-US")}</Title>
-                  <Text>{item.desc}</Text>
-                </div>
-                <Avatar
-                  className={` ${
-                    item.iconColor === "orange"
-                      ? "bg-orange-200 text-orange-500"
-                      : item.iconColor === "purple"
-                      ? "bg-purple-200 text-purple-500 "
-                      : item.iconColor === "green"
-                      ? "bg-green-200 text-green-500"
-                      : item.iconColor === "blue"
-                      ? "bg-blue-200 text-blue-500"
-                      : ""
-                  }  `}
-                  size={50}
-                  icon={
-                    <FaSackDollar
-                      className={classNames(`text-${item.iconColor}`)}
-                    />
-                  }
-                />
-              </Flex>
-            </Card>
-          </Col>
+        <Card item={item} index={index} icon={<FaSackDollar/>}></Card>
         ))}
-      </Row>
-      <Flex
-        justify="space-between"
-        align="center"
-        style={{
-          marginBottom: "16px",
-          backgroundColor: "white",
-          padding: "20px",
-          borderRadius: "20px",
-        }}
-      >
-        <Title level={3}>Create a Budget</Title>
-        <Button
-          size="large"
-          onClick={() => navigate("create-budget")}
-          type="primary"
-        >
-          Create Budget
-        </Button>
-      </Flex>
+      </div>
+       <ActionBar title="Create a Budget" buttonFunction={() => navigate("create-budget")} buttonTitle="Create Budget"></ActionBar>
       <div
         style={{
           borderRadius: "20px",
@@ -86,7 +31,7 @@ function OfficeBudget() {
           paddingBottom: "40px",
         }}
       >
-        <AntdTitle level={3}>Budget History</AntdTitle>
+        <Typography.Title level={3}>Budget History</Typography.Title>
         <Table columns={TableCols} />
       </div>
     </>
