@@ -1,16 +1,17 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import { RootState } from "@store";
-import { Button, Input, Select, Space, Table } from "antd";
+import {Button, Input, message, Select, Space, Table} from "antd";
 import { useNavigate } from "react-router-dom";
+import {deleteStaff} from "@api";
 
 export const Staff: React.FC = () => {
     const staff = useSelector(
         (state: RootState) => state.staff.staff
     );
-
+		const dispatch = useDispatch()
     const navigate = useNavigate();
-
+		
     const columns = [
         {
             title: "S/N",
@@ -68,7 +69,9 @@ export const Staff: React.FC = () => {
                     >
                         Edit
                     </a>
-                    <a className="text-red-500 hover:text-red-700">
+                    <a className="text-red-500 hover:text-red-700"
+                        onClick={() => onDelete(record.key)}
+                    >
                         Delete
                     </a>
                 </Space>
@@ -86,6 +89,11 @@ export const Staff: React.FC = () => {
         designation: item.designationId,
         role: item.roleId,
     }));
+	
+	const onDelete = async(id: number | string) => {
+		await deleteStaff({id, dispatch})
+		message.success("Staff deleted successfully")
+	}
 
     return (
         <div>

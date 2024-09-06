@@ -10,12 +10,14 @@ import {
 } from "antd";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import { RootState } from "@store";
 import { LoadingOutlined } from "@ant-design/icons";
 import { IoCamera } from "react-icons/io5";
 import styled from "@emotion/styled";
 import { FaAngleLeft } from "react-icons/fa6";
+import {addStaffApi, editStaffApi} from "@api";
+import {IStaff} from "@Interface/Interface";
 type FileType = Parameters<GetProp<UploadProps, "beforeUpload">>[0];
 
 const getBase64 = (img: FileType, callback: (url: string) => void) => {
@@ -51,55 +53,64 @@ const CustomLink = styled.a`
 `;
 
 export const StaffForm = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const staff = useSelector((state: RootState) => state.staff.staff);
-  const { id } = location.state || {};
-
-  const [form] = Form.useForm();
-
-  useEffect(() => {
-    if (id) form.setFieldsValue(staff.find((f) => f.id === id));
-  }, [id]);
-
-  const onFinish = () => {
-    console.log("onFinish");
-  };
-
-  const [loading, setLoading] = useState(false);
-  const [imageUrl, setImageUrl] = useState<string>();
-
-  const handleUploadChange: UploadProps["onChange"] = (info) => {
-    if (info.file.status === "uploading") {
-      setLoading(true);
-      return;
-    }
-    if (info.file.status === "done") {
-      // Get this url from response in real world.
-      getBase64(info.file.originFileObj as FileType, (url) => {
-        setLoading(false);
-        setImageUrl(url);
-      });
-    }
-  };
-
-  const uploadButton = (
-    <button style={{ border: 0, background: "none" }} type="button">
-      {loading ? (
-        <LoadingOutlined />
-      ) : (
-        <IoCamera
-          style={{
-            fontSize: "24px",
-            marginInline: "auto",
-            color: "gray",
-          }}
-        />
-      )}
-      <div style={{ marginTop: 8, color: "gray" }}>Upload photo</div>
-    </button>
-  );
-
+	const navigate = useNavigate();
+	const location = useLocation();
+	const dispatch = useDispatch();
+	const staff = useSelector((state: RootState) => state.staff.staff);
+	const { id } = location.state || {};
+	
+	const [form] = Form.useForm();
+	
+	useEffect(() => {
+		if (id) form.setFieldsValue(staff.find((f) => f.id === id));
+	}, [id]);
+	
+	const [loading, setLoading] = useState(false);
+	const [imageUrl, setImageUrl] = useState<string>();
+	
+	const handleUploadChange: UploadProps['onChange'] = (info) => {
+		if (info.file.status === 'uploading') {
+			setLoading(true);
+			return;
+		}
+		if (info.file.status === 'done') {
+			getBase64(info.file.originFileObj as FileType, (url) => {
+				setLoading(false);
+				setImageUrl(url);
+			});
+		}
+	};
+	
+	const uploadButton = (
+		<button style={{ border: 0, background: 'none' }} type="button">
+			{loading ? (
+				<LoadingOutlined />
+			) : (
+				<IoCamera style={{ fontSize: '24px', marginInline: 'auto', color: 'gray' }} />
+			)}
+			<div style={{ marginTop: 8, color: 'gray' }}>Upload photo</div>
+		</button>
+	);
+	
+	const onFinish = async () => {
+		const res: IStaff = form.getFieldsValue();
+		
+		try {
+			if (id) {
+				await editStaffApi({ id, newStaff: res, dispatch });
+				message.success('Staff edited successfully');
+			} else {
+				await addStaffApi({newStaff: res, dispatch});
+				message.success('Staff added successfully');
+			}
+		} catch (error) {
+			message.error('An error occurred while saving staff');
+			console.error(error);
+		} finally {
+			navigate(-1);
+		}
+	};
+	
   return (
     <div>
       <CustomLink onClick={() => navigate(-1)}>
@@ -222,7 +233,7 @@ export const StaffForm = () => {
                 <Select.Option value="3">Third</Select.Option>
               </Select>
             </Form.Item>
-            <Form.Item name="staffId" label="Staff ID">
+            <Form.Item label="Staff ID">
               <Input
                 readOnly
                 placeholder="Staff ID"
@@ -279,7 +290,7 @@ export const StaffForm = () => {
                 <Select.Option value="3">Third</Select.Option>
               </Select>
             </Form.Item>
-            <Form.Item name="officialEmail" label="Official email">
+            <Form.Item label="Official email">
               <Input
                 readOnly
                 placeholder="Official Email"

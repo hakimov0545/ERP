@@ -31,6 +31,7 @@ export default defineConfig({
       "@store": path.resolve(__dirname, "./src/store"),
       "@utils": path.resolve(__dirname, "./src/utils"),
       "@widgets": path.resolve(__dirname, "./src/widgets"),
+	    "@Interface" : path.resolve(__dirname, "./src/Interface")
     },
   },
 });
