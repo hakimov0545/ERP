@@ -2,8 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-.radius-container{
-   border-radius: 20px;
-   background-color: white;
-   padding: 20px;
+.radius-container {
+	border-radius: 20px;
+	background-color: white;
+	padding: 20px;
 }

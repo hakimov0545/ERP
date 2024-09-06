@@ -1,10 +1,7 @@
-
-import { Outlet } from 'react-router-dom'
+import { Outlet } from "react-router-dom";
 
 function MainMaintenance() {
-  return (
-    <Outlet/>
-  )
+	return <Outlet />;
 }
 
-export default MainMaintenance
+export default MainMaintenance;

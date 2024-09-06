@@ -57,7 +57,17 @@ const routes = createBrowserRouter([
 			{ path: "payroll", element: <Payroll /> },
 			{ path: "memo", element: <Memo /> },
 			{ path: "circulars", element: <Circulars /> },
-			{ path: "maintenance", element: <MainMaintenance />,children:[{path:"",element:<Maintenance/>},{path:"schedule-maintenance",element:<MaintenanceForm/>}] },
+			{
+				path: "maintenance",
+				element: <MainMaintenance />,
+				children: [
+					{ path: "", element: <Maintenance /> },
+					{
+						path: "schedule-maintenance",
+						element: <MaintenanceForm />,
+					},
+				],
+			},
 			{ path: "logistics", element: <Logistics /> },
 			{
 				path: "office-budget",

@@ -1,21 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
-import staffReducer from "./slices/staff";
-import employeesReducer from "./slices/employees";
-import payrollReducer from "./slices/payroll";
-import officeBudgetReducer from "./slices/officeBudget";
+import { api } from "@api/createApi";
 
-const store = configureStore({
+export const store = configureStore({
 	reducer: {
-		staff: staffReducer,
-		employees: employeesReducer,
-		payroll: payrollReducer,
-		officeBudget:officeBudgetReducer
+		[api.reducerPath]: api.reducer, // API reduktorini qo'shish
 	},
-	
-	devTools: process.env.NODE_ENV !== "production",
+	middleware: (getDefaultMiddleware) =>
+		getDefaultMiddleware().concat(api.middleware), // API middleware qo'shish
 });
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
-
-export default store;

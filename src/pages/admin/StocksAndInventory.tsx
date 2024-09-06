@@ -1,5 +1,5 @@
 function StocksAndInventory() {
-  return <div>StocksAndInventory</div>;
+	return <div>StocksAndInventory</div>;
 }
 
 export default StocksAndInventory;

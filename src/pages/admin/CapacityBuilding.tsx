@@ -1,5 +1,5 @@
 function CapacityBuilding() {
-  return <div>CapacityBuilding</div>;
+	return <div>CapacityBuilding</div>;
 }
 
 export default CapacityBuilding;
