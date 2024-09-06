@@ -6,7 +6,7 @@ export const TableCols: TableProps["columns"] = [
     title: "S/N",
     dataIndex: "index",
     key: "index",
-    render: (text) => <a>{text}</a>,
+    render: ({ item, index }) => <a>{index}</a>,
   },
   {
     title: "No.",
@@ -39,7 +39,7 @@ export const TableCols: TableProps["columns"] = [
     key: "date",
   },
 ];
-export const tableData:IOfficeBudgetData[] = [
+export const tableData: IOfficeBudgetData[] = [
   {
     ordinalNumber: "54782309",
     description: "Lorem ipsum dolor sit amet consectetur",
@@ -271,6 +271,5 @@ export const tableData:IOfficeBudgetData[] = [
     actualAmount: "3280.00",
     varianceAmount: "20.00",
     date: "09/12/2022",
-  }
+  },
 ];
-
