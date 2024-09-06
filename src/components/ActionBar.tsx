@@ -1,5 +1,6 @@
-import { Button, Flex } from "antd"
+import { Button, Flex,Row } from "antd"
 import { Title } from "./Title"
+
 
 function ActionBar({title,buttonFunction,buttonTitle}:{title:string,buttonFunction:()=>void,buttonTitle:string}) {
   return (
