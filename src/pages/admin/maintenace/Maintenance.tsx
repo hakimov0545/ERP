@@ -29,18 +29,11 @@ function Maintenance() {
   };
   return <><div className="grid grid-cols-4 gap-4 mb-4">
     {cardData.map((item,index)=>(
-      <Card item={item} index={index} icon={<IoSettingsOutline/>}></Card>
+      <Card item={item} key={index} icon={<IoSettingsOutline/>}></Card>
     ))}
     </div>
    <ActionBar title="Schedule a Maintenance" buttonTitle="Schedule Maintenance" buttonFunction={()=>{navigate("schedule-maintenance")}}></ActionBar>
-   <div
-        style={{
-          borderRadius: "20px",
-          backgroundColor: "white",
-          padding: "20px",
-          paddingBottom: "40px",
-        }}
-      >
+   <div className="radius-container">
         <Typography.Title level={3}>Schedule Maintenance</Typography.Title>
         <div className="flex justify-around">
         <div style={wrapperStyle}>

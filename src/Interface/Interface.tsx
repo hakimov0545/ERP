@@ -4,3 +4,11 @@ export interface ICardData {
     iconColor: string;
     pointer?:string;
   }
+  export interface IOfficeBudgetData{
+    ordinalNumber: string,
+    description: string,
+    amount: string,
+    actualAmount: string,
+    varianceAmount: string,
+    date: string,
+  }

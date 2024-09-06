@@ -33,5 +33,5 @@
       "@store/*": ["src/store/*"]
     }
   },
-  "include": ["src"]
+  "include": ["src", "MaintenanceForm.tsx"]
 }
