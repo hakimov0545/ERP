@@ -98,13 +98,7 @@ export const Staff: React.FC = () => {
     return (
         <div>
             <div
-                style={{
-                    borderRadius: "20px",
-                    backgroundColor: "white",
-                    width: "100%",
-                    height: "130px",
-                }}
-                className="flex items-center justify-between px-5 py-6 mb-5"
+                className="flex items-center justify-between px-5 py-6 mb-5 radius-container"
             >
                 <div style={{ width: "350px" }}>
                     <p className="mb-3 text-lg">
