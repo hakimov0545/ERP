@@ -47,12 +47,13 @@ function Maintenance() {
       <Calendar fullscreen={false} onPanelChange={onPanelChange} />
     </div>
     <div className="flex flex-col justify-evenly">
-      {   [1,2].map((item,index)=>(
+	    
+      {   [1,2].map((item)=>(
         <div>
-      <Typography.Text>18th November, 2022</Typography.Text>
-     <Typography.Text className="block mb-2 font-bold">{index+1}. Scheduled maintenance for service of 3 unit of AC</Typography.Text>
-     <Button  size="large" type="primary">View</Button>
-    </div>
+          <Typography.Text>18th November, 2022</Typography.Text>
+          <Typography.Text className="block mb-2 font-bold">{item}. Scheduled maintenance for service of 3 unit of AC</Typography.Text>
+	        <Button  size="large" type="primary">View</Button>
+        </div>
   ))}
    
     
