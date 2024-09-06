@@ -1,11 +1,11 @@
 import { Avatar, Flex, Typography,Card as AntdCard } from "antd"
 import { Title } from "./Title"
-function Card({item,index,icon}:{item:any,index:number,icon:React.ReactNode}) {
+function Card({item,icon}:{item:any,icon:React.ReactNode}) {
   return (
-          <AntdCard key={index} bordered={false}>
+          <AntdCard  bordered={false}>
               <Flex justify="space-between">
                 <div>
-                  <Title level={3}>{item.price.toLocaleString("en-US")}</Title>
+                  <Title level={3}>{item.price}</Title>
                   <Typography.Text>{item.desc}</Typography.Text>
                 </div>
                 <Avatar

@@ -2,8 +2,17 @@ export interface ICardData {
     price: string | number;
     desc: string;
     iconColor: string;
-		pointer?:string;
-}
+    pointer?:string;
+  }
+
+  export interface IOfficeBudgetData{
+    ordinalNumber: string,
+    description: string,
+    amount: string,
+    actualAmount: string,
+    varianceAmount: string,
+    date: string,
+  }
 
 export interface  IStaff {
 	id: number | string;

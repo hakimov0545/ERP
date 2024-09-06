@@ -6,12 +6,7 @@ function ActionBar({title,buttonFunction,buttonTitle}:{title:string,buttonFuncti
     <Flex
     justify="space-between"
     align="center"
-    style={{
-      marginBottom: "16px",
-      backgroundColor: "white",
-      padding: "20px",
-      borderRadius: "20px",
-    }}
+    className="mb-4 radius-container"
   >
     <Title level={3}>{title}</Title>
     <Button

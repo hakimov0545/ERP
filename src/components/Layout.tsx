@@ -112,7 +112,15 @@ const items: MenuItemType[] = [
     label: "Procurements",
   },
 ];
+function formatDate(date:Date):string{
+  const day=date.getDate()
+  const month=date.toLocaleString("default",{month:"long"})
+  const year=date.getFullYear()
+
+return `${day} ${month} ${year}`
+}
 const Layout = ({ children }: { children?: React.ReactNode }) => {
+  const date = new Date()
   const dispatch = useDispatch();
   const location = useLocation();
   function pageDetails(): {
@@ -124,9 +132,9 @@ const Layout = ({ children }: { children?: React.ReactNode }) => {
     switch (path) {
       case "dashboard":
         return {
-          title: "",
-          text: "dfssdfsdfsdfsdfds",
-          icon: <FaHome />,
+          title: "Welcome Mr Anonmous",
+          text:` Today is the ${formatDate(date)}`,
+          icon: <></>,
         };
       case "staff":
         return {

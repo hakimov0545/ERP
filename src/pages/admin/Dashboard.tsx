@@ -1,23 +1,26 @@
-/** @jsxImportSource @emotion/react */
-import { Flex, Space, Typography } from "antd";
-import styled from "@emotion/styled";
-
-const { Title, Text } = Typography;
-
-const CustomTitle = styled(Title)`
-	margin: 0;
-`;
+import Card from "@components/Card";
+import { Typography } from "antd";
+import { FaSackDollar } from "react-icons/fa6";
 
 export const Dashboard = () => {
 	return (
 		<>
-			<Flex justify="space-between" align="flex-start">
-				<Space direction="vertical">
-					<CustomTitle level={5}>Welcome</CustomTitle>
-					<Text type="secondary">Tofay sdasda</Text>
-				</Space>
-				<Text>Tofay sdasda</Text>
-			</Flex>
+		<div className="grid grid-cols-4 gap-4 mb-4">
+		<Card item={{}} icon={<FaSackDollar/>}></Card>
+        <Card item={{}} icon={<FaSackDollar/>}></Card>
+        <Card item={{}} icon={<FaSackDollar/>}></Card>
+        <Card item={{}} icon={<FaSackDollar/>}></Card>
+		</div>
+
+		<div className="grid grid-cols-2 gap-4">
+				
+			<div className="radius-container">
+				<Typography.Title level={3}>Memo</Typography.Title>
+			</div>
+			<div className="radius-container">	<Typography.Title level={3}>Staff List</Typography.Title></div>
+			<div className="radius-container">	<Typography.Title level={3}>Payment Vauchers</Typography.Title></div>
+			<div className="radius-container"> 	<Typography.Title level={3}>Staff Aplications Card</Typography.Title></div>
+		</div>
 		</>
 	);
 };
