@@ -1,11 +1,11 @@
 import { Outlet } from "react-router-dom";
 
 function MainOfficeBudget() {
-  return (
-    <>
-      <Outlet />
-    </>
-  );
+	return (
+		<>
+			<Outlet />
+		</>
+	);
 }
 
 export default MainOfficeBudget;

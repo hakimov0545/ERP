@@ -24,7 +24,6 @@ export interface IStaff {
   roleId: number | string;
   email: string;
 }
-
 export interface IPaymentVaucher {
   subject: string;
   date: string;
