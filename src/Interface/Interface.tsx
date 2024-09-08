@@ -39,5 +39,7 @@ export interface IPaymentVaucher {
     unitPrice: number;
     VAT: number;
     WHT: number;
-  };
+  }[];
 }
+
+
